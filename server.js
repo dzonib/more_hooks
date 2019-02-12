@@ -26,6 +26,11 @@ app.get('/get-items', async (req, res, next) => {
     res.json(items)
 })
 
+app.delete('/remove/:id', async (req, res, next) => {
+    await Item.destroy({where: {id: req.params.id}})
+    res.status(200)
+})
+
 
 
 sequelize.sync().then(() => app.listen(5000, () => console.log('App running on 3000')))
